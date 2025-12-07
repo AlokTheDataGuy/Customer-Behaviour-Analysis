@@ -131,4 +131,7 @@ customer-behavior-analysis/
 3. Introduce customer cohorts for deeper retention analysis.
 4. Expand dashboard with time-series forecasting.
 
+## 💐 Acknowledgment:
+This project was initially inspired by a tutorial from [Amlan Mohanty](https://www.youtube.com/@amlanmohanty1) on YouTube. I expanded the analysis, improved the SQL/Python logic, and redesigned the Power BI dashboard to create an improved and more comprehensive version.
 
+Tutorial: https://www.youtube.com/watch?v=5PrZvPeUw60
