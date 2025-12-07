@@ -113,6 +113,7 @@ These actions will help increase revenue, customer satisfaction, and long-term l
 ```
 customer-behavior-analysis/
 │── raw_data.csv
+│── frontend/
 │── python_eda.ipynb
 │── sql_analysis.sql
 │── customer_behaviour_dashboard.pbix
