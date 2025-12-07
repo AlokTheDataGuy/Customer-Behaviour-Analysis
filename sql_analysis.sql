@@ -20,16 +20,8 @@ SELECT
 	SUM(purchase_amount) AS Revenue
 FROM customer_purchases
 GROUP BY gender;
-
--- Q2. Which customers used a discount but still spent more than the average purchase amount?
-SELECT
-	customer_id AS Customer_ID,
-    purchase_amount AS Purchase_Amount
-FROM customer_purchases
-WHERE discount_applied = "Yes" 
-AND purchase_amount > (SELECT AVG(purchase_amount) FROM customer_purchases);
     
--- Q3. Which are the top 5 Product with the highest average review rating ?
+-- Q2. Which are the top 5 Product with the highest average review rating ?
 SELECT 
 	item_purchased AS Product,
 	ROUND(AVG(review_rating), 2) AS Avg_Product_Rating
@@ -38,7 +30,38 @@ GROUP BY item_purchased
 ORDER BY AVG(review_rating) DESC
 LIMIT 5;
 
--- Q4. Compare the average Purchase Amounts between Standard and Express Shipping.
+-- Q3. What are the top 10 best-selling products?
+SELECT
+	Item_Purchased AS Products,
+	COUNT(item_purchased) AS Volume
+FROM Customer_Purchases
+GROUP BY Item_Purchased
+ORDER BY Volume DESC
+LIMIT 10;
+    
+-- Q4. Which is top category by revenue and % of contribution to the total revenue?
+WITH Category_Rev AS (
+    SELECT
+        category,
+        SUM(purchase_amount) AS category_revenue
+    FROM customer_purchases
+    GROUP BY category
+),
+Total_Rev AS (
+    SELECT SUM(purchase_amount) AS total_revenue
+    FROM customer_purchases
+)
+SELECT
+    c.category,
+    c.category_revenue,
+    ROUND((c.category_revenue / t.total_revenue) * 100, 2) AS revenue_pct
+FROM Category_Rev c
+CROSS JOIN Total_Rev t
+ORDER BY c.category_revenue DESC;
+
+
+
+-- Q5. Compare the average Purchase Amounts between Standard and Express Shipping.
 SELECT
 	shipping_type AS Shipping_Type,
 	ROUND(AVG(purchase_amount), 2) AS Avg_Purchase_Amount
@@ -46,7 +69,7 @@ FROM customer_purchases
 WHERE shipping_type IN ('Standard', 'Express')
 GROUP BY shipping_type;
 
--- Q5. Do subscribed customers spend more ? Compare average spend and total revenue between 
+-- Q6. Do subscribed customers spend more ? Compare average spend and total revenue between 
 -- subscribers and non-subscribers.
 SELECT 
 	CASE WHEN subscription_status = 'Yes' THEN 'Subscribers'
@@ -60,7 +83,7 @@ GROUP BY Customer_Status
 ORDER BY Total_Revenue DESC, Average_Spend DESC;
     
 
--- Q6. Which 5 products have the highest percentage of purchases with discounts applied?
+-- Q7. Which 5 products have the highest percentage of purchases with discounts applied?
 SELECT
 	item_purchased AS Product,
     ROUND(SUM(CASE WHEN discount_applied = 'Yes' THEN 1 ELSE 0 END)/COUNT(*) * 100, 2) AS Purchase_Percentage 
@@ -70,7 +93,7 @@ ORDER BY Purchase_Percentage DESC
 LIMIT 5;
 
 
--- Q7. Segment customers into New, Returning and Loyal based on their total no. of previous 
+-- Q8. Segment customers into New, Returning and Loyal based on their total no. of previous 
 -- purchases, and show the count of each segment. Also, their contribution to the revenue.
 WITH customer_type AS (
 SELECT
@@ -94,7 +117,7 @@ GROUP BY Customer_Segment
 ORDER BY Number_of_Customers DESC, Total_Revenue DESC;
 
 
--- Q8. What are the top 3 most purchased products within each category ?
+-- Q9. What are the top 3 most purchased products within each category ?
 WITH item_counts as (
 SELECT 
 	Category,
@@ -113,7 +136,7 @@ FROM item_counts
 WHERE item_rank <= 3;
     
 
--- Q9. Are customers who are repeat buyers (more than 5 previous purchases) also likely to subscribe?
+-- Q10. Are customers who are repeat buyers (more than 5 previous purchases) also likely to subscribe?
 SELECT
 	Subscription_Status,
 	COUNT(Customer_ID) AS Repeat_Buyers
@@ -123,7 +146,7 @@ GROUP BY subscription_status;
 
 
 
--- Q10. What is the revenue contribution and Average Order Value (AOV) of each age group ?
+-- Q11. What is the revenue contribution and Average Order Value (AOV) of each age group ?
 SELECT
 	Age_Group,
 	SUM(Purchase_Amount) AS Total_Revenue,
@@ -132,13 +155,6 @@ FROM customer_purchases
 GROUP BY age_group
 ORDER BY Total_Revenue DESC, Average_Order_Value DESC ;
 
--- Q11. Do customers with an active subscription buy more frequently than those without a subscription?
-SELECT
-	Subscription_Status,
-    AVG(Purchase_Frequency_Days) AS Avg_Purchase_Frequency_Days
-FROM customer_purchases
-GROUP BY Subscription_Status
-ORDER BY Avg_Purchase_Frequency_Days DESC;
 
 -- Q12. Which product categories show the highest discount dependency
 -- (% of category revenue that came from discounted items)?
@@ -150,14 +166,15 @@ FROM customer_purchases
 GROUP BY category
 ORDER BY discount_dependency_ratio DESC;
 
--- Q.13 Which locations (states) contribute the highest revenue and which underperform?
+-- Q.13 Which top 10 locations (states) contribute the highest revenue and which underperform?
 SELECT
 	Location,
     SUM(Purchase_Amount) AS Total_Revenue,
     RANK() OVER (ORDER BY SUM(Purchase_Amount) DESC) AS Revenue_Rank
 FROM customer_purchases
 GROUP BY Location
-ORDER BY Total_Revenue DESC;
+ORDER BY Total_Revenue DESC
+LIMIT 10;
 
 -- Q.14 Which shipping types result in the highest review ratings (customer satisfaction)?
 SELECT
@@ -185,36 +202,9 @@ FROM Season_Rev
 WHERE Revenue_Rank = 1
 ORDER BY Total_Revenue DESC;
 
--- Q16. What are the top 10 best-selling products?
-SELECT
-	Item_Purchased AS Products,
-	COUNT(item_purchased) AS Volume
-FROM Customer_Purchases
-GROUP BY Item_Purchased
-ORDER BY Volume DESC
-LIMIT 10;
-    
 
--- Q.17 Which is top category by revenue and % of contribution to the total revenue?
-WITH Category_Rev AS (
-    SELECT
-        category,
-        SUM(purchase_amount) AS category_revenue
-    FROM customer_purchases
-    GROUP BY category
-),
-Total_Rev AS (
-    SELECT SUM(purchase_amount) AS total_revenue
-    FROM customer_purchases
-)
 
-SELECT
-    c.category,
-    c.category_revenue,
-    ROUND((c.category_revenue / t.total_revenue) * 100, 2) AS revenue_pct
-FROM Category_Rev c
-CROSS JOIN Total_Rev t
-ORDER BY c.category_revenue DESC;
+
 
     
     

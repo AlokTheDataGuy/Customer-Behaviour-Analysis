@@ -40,7 +40,7 @@ The company wants to understand what drives customer purchases and why behavior 
 ### 1. **Python (EDA & Transformation)**
 
 * Cleaned and prepared raw data (`raw_data.csv`)
-* Handled missing review ratings
+* Handled missing review ratings category wise
 * Engineered age groups & purchase frequency
 * Standardized categorical fields
 * Exported cleaned dataset for SQL + BI
