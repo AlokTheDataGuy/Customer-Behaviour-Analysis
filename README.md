@@ -21,7 +21,7 @@ Increase subscription adoption, refine discount policies, and align inventory wi
 
 ## 🧩 Business Problem
 
-The company wants to understand what drives customer purchases and why behavior differs across demographic groups, product categories, seasons, and regions. Stakeholders have observed inconsistent engagement and want actionable insights to optimize:
+The company wants to understand what drives customer purchases and why behavior differs across product categories, seasons, and regions. Stakeholders have observed inconsistent engagement and want actionable insights to optimize:
 
 * Marketing strategy
 * Product assortment
@@ -31,6 +31,9 @@ The company wants to understand what drives customer purchases and why behavior 
 **Guiding Question:**
 **“How can the company leverage consumer shopping data to identify trends, improve customer engagement, and optimize marketing and product strategies?”**
 
+---
+
+## 🖼️ Screenshot
 ![dashboard](./screenshots/dashboard.png)
 
 ---
