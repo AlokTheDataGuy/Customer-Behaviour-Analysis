@@ -1,4 +1,4 @@
-# 📊 Customer Behaviour & Revenue Insights Analysis
+# 📊 Customer Shopping Behaviour Analysis
 
 ## Executive Summary
 
