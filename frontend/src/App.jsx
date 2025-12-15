@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import { FileText, Code, Database, BarChart3, ExternalLink, ChevronDown, ChevronUp, Github, ShoppingCart, Users, TrendingUp } from 'lucide-react';
+import dashboardScreenshot from '../../screenshots/dashboard.png';
 
 export default function CustomerBehaviorDashboard() {
   const [activeTab, setActiveTab] = useState('dashboard');
   const [showMethodology, setShowMethodology] = useState(false);
+  const [showWarning, setShowWarning] = useState(false);
 
   // Replace these with your actual links
   const links = {
-    powerbi: 'https://app.powerbi.com/reportEmbed?reportId=1f0d80ee-e6a2-4f4f-b7e3-a41efc132337&autoAuth=true&ctid=56c1d497-700b-49cf-8f8d-3dd6b20d522f&navContentPaneEnabled=false&filterPaneEnabled=true',
+    powerbi: 'https://app.powerbi.com/reportEmbed?reportId=1f0d80ee-e6a2-4f4f-b7e3-a41efc132337&autoAuth=true&ctid=56c1d497-700b-49cf-8f8d-3dd6b20d522f&navContentPaneEnabled=false&filterPaneEnabled=false',
     report: 'https://drive.google.com/file/d/1zxKcQR9M6_wbfFhIUuLuvJ1LP5XsMNMb/view?usp=sharing',
     notebook: 'https://drive.google.com/drive/folders/1i6JFaGhFwGjvKpIlbPCopdjNn3og0PhW?usp=sharing',
     sql: 'https://drive.google.com/file/d/1xXqDcbW32aTKY0JS_Ze9KL_rv6igGNNA/view?usp=sharing',
@@ -150,38 +152,32 @@ export default function CustomerBehaviorDashboard() {
               <div className="bg-gradient-to-r from-indigo-600 to-purple-700 px-6 py-4">
                 <h2 className="text-xl font-bold text-white">Customer Behaviour Analysis Dashboard</h2>
                 <p className="text-indigo-100 text-sm mt-1">
+                  Snapshot view of 
                   KPIs → Demographics → Subscriptions → Discounts → Seasonality → Customer Segments
                 </p>
               </div>
 
-               {/* Power BI Embed */}
+              {/* Screenshot Preview */}
               <div className="p-4 bg-gray-50">
-                <div className="bg-white rounded-lg shadow-inner border-2 border-dashed border-gray-300">
-                  <div className="w-full overflow-hidden">
-                    <iframe
-                      title="Customer Behaviour Analysis Dashboard"
-                      src={links.powerbi}
-                      frameBorder="0"
-                      allowFullScreen={true}
-                      className="w-full"
-                      style={{
-                        height: '56.25vw', // 16:9 aspect ratio (9/16 = 0.5625)
-                        maxHeight: '630px', // Maximum height
-                        minHeight: '400px'  // Minimum height for mobile
-                      }}
-                    />
-                  </div>
+                <div className="bg-white rounded-lg shadow-inner border border-gray-200">
+                  <img
+                    src={dashboardScreenshot}
+                    alt="Customer Behaviour Dashboard Screenshot"
+                    className="w-full rounded-lg"
+                  />
                 </div>
               </div>
 
               {/* Quick Links Below Dashboard */}
               <div className="px-6 py-4 bg-gray-50 border-t border-gray-200">
                 <div className="flex flex-wrap gap-3">
-                  <a href={links.powerbi} target="_blank" rel="noopener noreferrer"
-                    className="inline-flex items-center px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition text-sm font-medium">
+                  <button
+                    onClick={() => setShowWarning(true)}
+                    className="inline-flex items-center px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition text-sm font-medium"
+                  >
                     <ExternalLink className="w-4 h-4 mr-2" />
-                    Open Dashboard
-                  </a>
+                    View Interactive Dashboard
+                  </button>
                   <a href={links.report} target="_blank" rel="noopener noreferrer"
                     className="inline-flex items-center px-4 py-2 bg-white border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition text-sm font-medium">
                     <FileText className="w-4 h-4 mr-2" />
@@ -317,19 +313,19 @@ export default function CustomerBehaviorDashboard() {
             <div className="bg-white rounded-lg shadow-md p-6">
               <h2 className="text-2xl font-bold text-gray-900 mb-4">Project Overview</h2>
               <p className="text-gray-700 leading-relaxed mb-4">
-                A comprehensive end-to-end data analytics project analyzing customer shopping behavior 
-                patterns across 15,000 customers. The project includes extensive exploratory data analysis (EDA) 
-                using Python, SQL-driven business queries to extract actionable insights, and a fully interactive 
-                Power BI dashboard for stakeholder-ready visualization. The analysis focuses on understanding 
-                revenue drivers, customer segmentation, subscription impact, discount dependency, and product/category 
+                A comprehensive end-to-end data analytics project analyzing customer shopping behavior
+                patterns across 15,000 customers. The project includes extensive exploratory data analysis (EDA)
+                using Python, SQL-driven business queries to extract actionable insights, and a fully interactive
+                Power BI dashboard for stakeholder-ready visualization. The analysis focuses on understanding
+                revenue drivers, customer segmentation, subscription impact, discount dependency, and product/category
                 performance to support strategic data-driven decisions.
               </p>
 
               <div className="bg-indigo-50 border-l-4 border-indigo-600 p-4 mt-4">
                 <p className="text-sm text-indigo-800">
-                  <strong>Key Achievement:</strong> Analyzed <strong>15,000 </strong> customers and transactions 
-                  to uncover that subscribers contribute <strong>55.98%</strong> of total revenue with an average spend of 
-                  <strong> $478K</strong>, while Clothing drives <strong>46.85%</strong> of revenue. Loyal customers 
+                  <strong>Key Achievement:</strong> Analyzed <strong>15,000 </strong> customers and transactions
+                  to uncover that subscribers contribute <strong>55.98%</strong> of total revenue with an average spend of
+                  <strong> $478K</strong>, while Clothing drives <strong>46.85%</strong> of revenue. Loyal customers
                   (10+ purchases) account for <strong>88.08%</strong> of revenue.
                 </p>
               </div>
@@ -366,8 +362,8 @@ export default function CustomerBehaviorDashboard() {
                   <div className="border-l-4 border-blue-500 pl-4">
                     <h3 className="font-semibold text-gray-900 mb-2">1. Data Collection & Cleaning</h3>
                     <p className="text-sm text-gray-600">
-                      Collected transactional customer data (1,500 records, 18 features). Handled missing values 
-                      in review ratings using category-wise median imputation. Standardized categorical variables 
+                      Collected transactional customer data (1,500 records, 18 features). Handled missing values
+                      in review ratings using category-wise median imputation. Standardized categorical variables
                       and removed redundant features.
                     </p>
                   </div>
@@ -375,8 +371,8 @@ export default function CustomerBehaviorDashboard() {
                   <div className="border-l-4 border-indigo-500 pl-4">
                     <h3 className="font-semibold text-gray-900 mb-2">2. Exploratory Data Analysis (EDA)</h3>
                     <p className="text-sm text-gray-600">
-                      Performed comprehensive EDA using Python (Pandas, Matplotlib, Seaborn). Created age group 
-                      bins, engineered purchase frequency features, and analyzed distribution patterns across 
+                      Performed comprehensive EDA using Python (Pandas, Matplotlib, Seaborn). Created age group
+                      bins, engineered purchase frequency features, and analyzed distribution patterns across
                       demographics, categories, and behavior flags.
                     </p>
                   </div>
@@ -384,8 +380,8 @@ export default function CustomerBehaviorDashboard() {
                   <div className="border-l-4 border-purple-500 pl-4">
                     <h3 className="font-semibold text-gray-900 mb-2">3. SQL Business Analysis</h3>
                     <p className="text-sm text-gray-600">
-                      Executed targeted SQL queries using CTEs, window functions, and CASE statements to answer 
-                      key business questions: revenue by demographics, subscription impact, discount behavior, 
+                      Executed targeted SQL queries using CTEs, window functions, and CASE statements to answer
+                      key business questions: revenue by demographics, subscription impact, discount behavior,
                       top products, customer segmentation (New/Returning/Loyal), and seasonal trends.
                     </p>
                   </div>
@@ -393,8 +389,8 @@ export default function CustomerBehaviorDashboard() {
                   <div className="border-l-4 border-orange-500 pl-4">
                     <h3 className="font-semibold text-gray-900 mb-2">4. Customer Segmentation</h3>
                     <p className="text-sm text-gray-600">
-                      Segmented customers into New (0 previous purchases), Returning (1-9), and Loyal (10+) 
-                      categories. Analyzed revenue contribution and Average Order Value (AOV) across segments 
+                      Segmented customers into New (0 previous purchases), Returning (1-9), and Loyal (10+)
+                      categories. Analyzed revenue contribution and Average Order Value (AOV) across segments
                       to identify high-value customer profiles.
                     </p>
                   </div>
@@ -402,8 +398,8 @@ export default function CustomerBehaviorDashboard() {
                   <div className="border-l-4 border-green-500 pl-4">
                     <h3 className="font-semibold text-gray-900 mb-2">5. Power BI Dashboard</h3>
                     <p className="text-sm text-gray-600">
-                      Built an interactive dashboard with KPI cards, filters (subscription, gender, category, 
-                      shipping), and multiple visualizations showing revenue/sales by category, age group, 
+                      Built an interactive dashboard with KPI cards, filters (subscription, gender, category,
+                      shipping), and multiple visualizations showing revenue/sales by category, age group,
                       customer type, and seasonal trends. Implemented DAX measures for dynamic calculations.
                     </p>
                   </div>
@@ -418,35 +414,35 @@ export default function CustomerBehaviorDashboard() {
                 <li className="flex items-start">
                   <span className="text-indigo-600 mr-3 text-xl">✓</span>
                   <span className="text-gray-700">
-                    <strong>Subscribers drive revenue:</strong> Subscribed customers spend an average of $478K 
+                    <strong>Subscribers drive revenue:</strong> Subscribed customers spend an average of $478K
                     and contribute 55.98% of total revenue, indicating strong value in subscription adoption.
                   </span>
                 </li>
                 <li className="flex items-start">
                   <span className="text-indigo-600 mr-3 text-xl">✓</span>
                   <span className="text-gray-700">
-                    <strong>Clothing dominates:</strong> The Clothing category generates 46.85% of total revenue, 
+                    <strong>Clothing dominates:</strong> The Clothing category generates 46.85% of total revenue,
                     with Winter being the highest-revenue season for this category.
                   </span>
                 </li>
                 <li className="flex items-start">
                   <span className="text-indigo-600 mr-3 text-xl">✓</span>
                   <span className="text-gray-700">
-                    <strong>Discount dependency:</strong> Accessories show the highest discount dependency ratio 
+                    <strong>Discount dependency:</strong> Accessories show the highest discount dependency ratio
                     at 47.94%, suggesting potential for margin improvement through refined discount strategies.
                   </span>
                 </li>
                 <li className="flex items-start">
                   <span className="text-indigo-600 mr-3 text-xl">✓</span>
                   <span className="text-gray-700">
-                    <strong>Loyal customers are key:</strong> Customers with 10+ previous purchases account for 
+                    <strong>Loyal customers are key:</strong> Customers with 10+ previous purchases account for
                     88.08% of revenue, highlighting the importance of retention programs.
                   </span>
                 </li>
                 <li className="flex items-start">
                   <span className="text-indigo-600 mr-3 text-xl">✓</span>
                   <span className="text-gray-700">
-                    <strong>Winter peak demand:</strong> Winter generates the highest revenue across categories, 
+                    <strong>Winter peak demand:</strong> Winter generates the highest revenue across categories,
                     presenting opportunities for seasonal inventory optimization and targeted marketing.
                   </span>
                 </li>
@@ -460,35 +456,35 @@ export default function CustomerBehaviorDashboard() {
                 <div className="bg-indigo-50 p-4 rounded-lg">
                   <h3 className="font-semibold text-indigo-900 mb-2">1. Boost Subscription Adoption</h3>
                   <p className="text-sm text-gray-700">
-                    Offer trial discounts and time-limited perks to convert non-subscribers. Prioritize marketing 
+                    Offer trial discounts and time-limited perks to convert non-subscribers. Prioritize marketing
                     channels where subscribers are concentrated.
                   </p>
                 </div>
                 <div className="bg-purple-50 p-4 rounded-lg">
                   <h3 className="font-semibold text-purple-900 mb-2">2. Refine Discount Strategy</h3>
                   <p className="text-sm text-gray-700">
-                    Reduce blanket discounts on high-dependency categories with low margins. A/B test targeted 
+                    Reduce blanket discounts on high-dependency categories with low margins. A/B test targeted
                     discounts on price-sensitive segments.
                   </p>
                 </div>
                 <div className="bg-orange-50 p-4 rounded-lg">
                   <h3 className="font-semibold text-orange-900 mb-2">3. Seasonal Inventory Planning</h3>
                   <p className="text-sm text-gray-700">
-                    Increase stock of top-performing seasonal items (especially Clothing) prior to Winter peak. 
+                    Increase stock of top-performing seasonal items (especially Clothing) prior to Winter peak.
                     Reduce SKUs with consistently low sales.
                   </p>
                 </div>
                 <div className="bg-green-50 p-4 rounded-lg">
                   <h3 className="font-semibold text-green-900 mb-2">4. Customer Loyalty Program</h3>
                   <p className="text-sm text-gray-700">
-                    Create micro-incentives to move Returning customers to Loyal status (e.g., rewards after 
+                    Create micro-incentives to move Returning customers to Loyal status (e.g., rewards after
                     3-5 purchases). Focus retention efforts on high-value segments.
                   </p>
                 </div>
                 <div className="bg-blue-50 p-4 rounded-lg">
                   <h3 className="font-semibold text-blue-900 mb-2">5. Shipping Optimization</h3>
                   <p className="text-sm text-gray-700">
-                    If Express shipping correlates with higher spend, explore upsell messaging for faster 
+                    If Express shipping correlates with higher spend, explore upsell messaging for faster
                     shipping options at checkout.
                   </p>
                 </div>
@@ -497,6 +493,37 @@ export default function CustomerBehaviorDashboard() {
           </div>
         )}
       </div>
+{showWarning && (
+  <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50">
+          <div className="bg-slate-900 border border-purple-500/40 rounded-xl p-6 max-w-md w-full">
+            <h3 className="text-lg font-bold text-white mb-2">
+        Power BI Sign-In Required
+      </h3>
+      <p className="text-sm text-gray-300 mb-4">
+        The interactive dashboard is hosted on Power BI and requires a Microsoft
+        Power BI account to access. Please sign in or sign up to continue.
+      </p>
+
+      <div className="flex justify-end space-x-3">
+        <button
+          onClick={() => setShowWarning(false)}
+          className="px-4 py-2 text-sm rounded-lg border border-gray-300 bg-gray-100"
+        >
+          Cancel
+        </button>
+        <a
+          href={links.powerbi}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="px-4 py-2 text-sm rounded-lg bg-indigo-600 text-white hover:bg-indigo-700"
+        >
+          Continue
+        </a>
+      </div>
+    </div>
+  </div>
+)}
+
 
       {/* Footer */}
       <footer className="bg-gray-900 text-white mt-16">
