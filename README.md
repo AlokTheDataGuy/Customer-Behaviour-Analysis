@@ -1,137 +1,144 @@
-# 📊 Customer Shopping Behaviour Analysis
+<div align="center">
 
-## Executive Summary
+  <h1>Customer Shopping Behaviour Analysis</h1>
 
-A retail company is experiencing shifts in customer purchasing patterns across demographics, product categories, and seasons. To uncover the root causes and identify opportunities for higher revenue and better engagement, I analyzed 15,000+ transactions using Python, SQL, and Power BI.
+  <p><strong>An end-to-end retail analytics project — 15,000+ transactions analysed in Python and SQL, surfaced through an interactive Power BI dashboard, with concrete recommendations on subscription growth, discount strategy, and seasonal planning.</strong></p>
 
-This project reveals which factors — such as **discounts, seasons, reviews, subscription status, and product categories** — most strongly influence spending and repeat purchases. Insights from this analysis show clear opportunities to improve loyalty, seasonal planning, and discount strategy.
+  <p>
+    <img src="https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=white" alt="Python"/>
+    <img src="https://img.shields.io/badge/SQL-4479A1?logo=postgresql&logoColor=white" alt="SQL"/>
+    <img src="https://img.shields.io/badge/Power%20BI-F2C811?logo=powerbi&logoColor=black" alt="Power BI"/>
+    <img src="https://img.shields.io/badge/Transactions-15K%2B-success" alt="Transactions"/>
+  </p>
 
-**Key Findings:**
-
-* **Total Customers:** 15,000
-* **Average Purchase Amount:** $56.97
-* **Average Review Rating:** 3.74
-* **Top Category by Revenue:** Clothing
-* **Most Active Season:** Winter
-
-**Recommendation at a Glance:**
-Increase subscription adoption, refine discount policies, and align inventory with strong seasonal demand.
+</div>
 
 ---
 
-## 🧩 Business Problem
+## Why This Project
 
-The company wants to understand what drives customer purchases and why behavior differs across product categories, seasons, and regions. Stakeholders have observed inconsistent engagement and want actionable insights to optimize:
+A retail business is sitting on transaction data and asking the question every retail business asks: *what actually drives our customers to spend?* Instinct says discounts. Or seasons. Or subscriptions. Or reviews. The honest answer is some mix of all of them — and that mix is what this project quantifies.
 
-* Marketing strategy
-* Product assortment
-* Discount usage
-* Customer retention and loyalty
+The pipeline is deliberately tool-appropriate: Python for cleaning and exploratory work, SQL for the analytical questions a business analyst would actually be asked, Power BI for the layer stakeholders interact with. Each tool earns its place; nothing is bolted on.
 
-**Guiding Question:**
-**“How can the company leverage consumer shopping data to identify trends, improve customer engagement, and optimize marketing and product strategies?”**
+> **Guiding question:** *How can the company leverage consumer shopping data to identify trends, improve customer engagement, and optimise marketing and product strategies?*
 
 ---
 
-## 🖼️ Screenshot
-![dashboard](./screenshots/dashboard.png)
+## Dashboard
+
+![Dashboard](./screenshots/dashboard.png)
+
+The Power BI dashboard surfaces revenue and sales breakdowns, category and seasonal performance, customer profile trends, subscription impact, and the relationships between discounts, shipping type, and review ratings — all filterable through slicers.
 
 ---
 
-## 🔍 Methodology
+## Headline Findings
 
-### 1. **Python (EDA & Transformation)**
+| # | Finding | What it implies |
+|---|---------|-----------------|
+| 1 | **Subscribers spend more and buy more often** | Subscription is the highest-leverage retention play — incentivising adoption pays back twice |
+| 2 | **Winter is the peak spending season** | Inventory and marketing should lean into Q4/seasonal demand, not be evenly distributed |
+| 3 | **Clothing dominates revenue** | But other categories show heavier discount dependency — they're propped up by promotions, not preference |
+| 4 | **Express shipping correlates with higher review ratings** | Shipping speed is a customer satisfaction lever, not just a cost line |
+| 5 | **Location revenue contribution is uneven** | Targeted regional marketing has more upside than blanket campaigns |
 
-* Cleaned and prepared raw data (`raw_data.csv`)
-* Handled missing review ratings category wise
-* Engineered age groups & purchase frequency
-* Standardized categorical fields
-* Exported cleaned dataset for SQL + BI
-
-### 2. **SQL (Business Analysis)**
-
-Insightful queries were written to answer key business questions such as:
-
-* Revenue by gender, age group, season, and location
-* Top products by sales & rating
-* Subscription vs non-subscription behaviour
-* Discount dependency by category
-* Loyal vs returning vs new customer segments
-
-### 3. **Power BI (Dashboard)**
-
-Developed an interactive dashboard to visualize:
-
-* Revenue & sales breakdowns
-* Category and seasonal performance
-* Customer profile trends
-* Subscription impact
-* Discounts, shipping types & review distribution
+**Snapshot:** 15,000 customers · $56.97 average purchase · 3.74 average review rating · Clothing leads by revenue · Winter is the most active season.
 
 ---
 
-## 🛠 Skills Demonstrated
+## Methodology
 
-### **SQL:**
+### 1. Python — EDA & Transformation
 
-CTEs, Window Functions, CASE statements, Ranking, Aggregations, Segmentation logic
+- Loaded and inspected the raw transaction file (`raw_data.csv`)
+- Imputed missing review ratings using category-wise medians (avoids the bias of a global mean)
+- Engineered age groups and purchase-frequency buckets for segmentation
+- Standardised categorical fields (case, whitespace, inconsistent labels)
+- Exported a clean dataset feeding both the SQL layer and Power BI
 
-### **Python:**
+### 2. SQL — Business Analysis
 
-Pandas, NumPy, Matplotlib/Seaborn, Feature Engineering, Data Cleaning
+Wrote queries to answer the questions a stakeholder would actually ask:
 
-### **Power BI:**
+- Revenue by gender, age group, season, and location
+- Top products by sales and rating
+- Subscriber vs non-subscriber spending behaviour
+- Discount dependency by category
+- Loyal vs returning vs new customer segments
 
-DAX, Data Modeling, Interactive Visuals, KPI Design, Slicers & Filters
+Heavy use of CTEs, window functions, and CASE-based segmentation logic.
 
----
+### 3. Power BI — Dashboard
 
-## 📈 Results & Recommendations
+Built an interactive dashboard for stakeholders to explore the data without writing a query:
 
-This project uncovered several high-impact insights:
-
-* **Subscribers spend more and buy more frequently**, indicating strong potential for loyalty growth.
-* **Winter has the highest spending volume**, suggesting seasonal marketing and inventory boosts.
-* **Clothing dominates revenue**, but other categories show strong discount dependency.
-* **Express shipping correlates with higher review ratings**, reflecting better customer satisfaction.
-* **Locations vary significantly in revenue contribution**, offering targeted marketing opportunities.
-
-### 🚀 Recommendations
-
-1. **Boost subscription adoption** through incentives and personalized benefits.
-2. **Optimize discount strategy** by reducing dependency in low-margin categories.
-3. **Strengthen seasonal planning**, especially for Winter demand spikes.
-4. **Leverage high-value customer segments** (loyal & frequent buyers) with targeted offers.
-5. **Improve product and shipping experiences** in low-rated categories/regions.
-
-These actions will help increase revenue, customer satisfaction, and long-term loyalty.
+- Revenue and sales breakdowns
+- Category and seasonal performance
+- Customer profile trends
+- Subscription impact
+- Discount, shipping, and review-rating distributions
 
 ---
 
-## 📂 Repository Structure
+## Recommendations
+
+The findings above translate into five concrete actions:
+
+1. **Boost subscription adoption** with onboarding incentives and personalised benefits — subscribers are already the most valuable cohort
+2. **Refine discount strategy** in categories that lean heavily on promotions for revenue; protect margin where loyalty is genuine
+3. **Plan inventory and marketing seasonally**, with Q4 / Winter as the priority window
+4. **Build targeted offers for high-value cohorts** (loyal and frequent buyers) instead of treating the base as one segment
+5. **Improve shipping and product experience** in low-rated categories and regions — the satisfaction signal is already in the data
+
+---
+
+## Skills Demonstrated
+
+| Tool | Skills |
+|------|--------|
+| **SQL** | CTEs · Window functions · CASE statements · Ranking · Aggregations · Segmentation logic |
+| **Python** | pandas · NumPy · Matplotlib / Seaborn · Feature engineering · Data cleaning |
+| **Power BI** | DAX · Data modelling · Interactive visuals · KPI design · Slicers & filters |
+
+---
+
+## Repository Structure
 
 ```
 customer-behavior-analysis/
-│── raw_data.csv
-│── frontend/
-│── python_eda.ipynb
-│── sql_analysis.sql
-│── customer_behaviour_dashboard.pbix
-│── Customer_Behaviour_Analysis.pdf
-│── requirements.txt
-│── README.md
+├── raw_data.csv                          # Source transaction data
+├── python_eda.ipynb                      # Cleaning + exploratory analysis
+├── sql_analysis.sql                      # Business-question queries
+├── customer_behaviour_dashboard.pbix     # Power BI dashboard
+├── Customer_Behaviour_Analysis.pdf       # Static report export
+├── screenshots/
+│   └── dashboard.png
+├── requirements.txt
+└── README.md
 ```
 
 ---
 
-## 🚀 Next Steps
+## Next Steps
 
-1. Build predictive models (CLV, churn, product recommendations).
-2. Apply A/B testing for discount strategies and subscription messaging.
-3. Introduce customer cohorts for deeper retention analysis.
-4. Expand dashboard with time-series forecasting.
+If extended, the natural progressions are:
 
-## 💐 Acknowledgment:
-This project was initially inspired by a tutorial from [Amlan Mohanty](https://www.youtube.com/@amlanmohanty1) on YouTube. I expanded the analysis, improved the SQL/Python logic, and redesigned the Power BI dashboard to create an improved and more comprehensive version.
+- **Predictive layer** — CLV, churn probability, product recommendations
+- **A/B testing framework** — for validating discount and subscription-messaging strategies
+- **Cohort analysis** — month-by-month retention curves for deeper loyalty insight
+- **Time-series forecasting** — extend the dashboard to project Q-on-Q demand
 
-Tutorial: https://www.youtube.com/watch?v=5PrZvPeUw60
+---
+
+## Acknowledgment
+
+This project was initially inspired by a tutorial from [Amlan Mohanty](https://www.youtube.com/@amlanmohanty1) on YouTube. I extended the SQL and Python logic, redesigned the Power BI dashboard, and added the recommendation framing to make the analysis stakeholder-ready.
+
+Original tutorial: [youtube.com/watch?v=5PrZvPeUw60](https://www.youtube.com/watch?v=5PrZvPeUw60)
+
+---
+
+## Author
+
+[LinkedIn](#) · [Portfolio](#) · [Email](#)
